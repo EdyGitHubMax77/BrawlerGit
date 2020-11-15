@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     public Collider Hit;
 
+    public Transform RespawnPoint;
+
     
 
     private void OnTriggerEnter(Collider collider)
@@ -23,11 +25,12 @@ public class Player : MonoBehaviour
             {
                 amIAlive = false;
 
-                transform.position = new Vector3(-9.99f, 1, 26.79f);
+
+                transform.position = RespawnPoint.position;
             }
             else
             {
-                transform.position = new Vector3(-9.99f, 0.33f, 26.79f);
+                transform.position = RespawnPoint.position;
             }
         }
        else if (collider.gameObject.GetComponent<HitGiving>() != null)
