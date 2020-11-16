@@ -9,16 +9,22 @@ public class LifeManager : MonoBehaviour
 
     public Transform RespawnPoint;
 
+    public UIManager UIManager;
+
     int alivePlayers = 0;
 
     private void Start()
     {
         Player1.RespawnPoint = RespawnPoint;
         Player2.RespawnPoint = RespawnPoint;
+
+        Player1.UIManager = UIManager;
+        Player2.UIManager = UIManager;
     }
 
     void Update()
     {
+        //Player Status De Vida
         if (Player1.amIAlive)
             { 
                 alivePlayers++;
@@ -31,6 +37,7 @@ public class LifeManager : MonoBehaviour
             Debug.Log("Player 2 is still alive");
         }
 
+        //Declarar a jugador ganador
         if (alivePlayers == 1)
         {
             Player WinnerPlayer;
@@ -49,8 +56,11 @@ public class LifeManager : MonoBehaviour
             {
                 WinnerPlayer = new Player();
             }
+
+            UIManager.DeclareWinner(WinnerPlayer);
         }
         //Decirle al UI que el ganador es WinnerPlayer
 
+        alivePlayers = 0;
     }
 }

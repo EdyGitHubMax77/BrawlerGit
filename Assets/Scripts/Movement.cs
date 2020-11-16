@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour
         }
 
 
-       //LaterMovement
+       //Movement
        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
         }
     }
     
-
+    //Colisión
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.GetComponent<Ground>() != null)

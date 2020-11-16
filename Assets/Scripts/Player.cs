@@ -12,20 +12,26 @@ public class Player : MonoBehaviour
 
     public Transform RespawnPoint;
 
-    
+    public UIManager.WhatPlayerAmI whatPlayerAmI;
+
+    public UIManager UIManager;
 
     private void OnTriggerEnter(Collider collider)
     {
-       if (collider.gameObject.GetComponent<DangerZone>() != null)
+       //Disminución de vidas al caer de plataforma
+        if (collider.gameObject.GetComponent<DangerZone>() != null)
         {
             Debug.Log("Toque la danger zone");
             lifes--;
+
+            UIManager.UpdatePlayerData(this);
+
             Debug.Log("Ahora tengo " + lifes + " vidas");
             if (lifes == 0)
             {
                 amIAlive = false;
 
-
+                //Reaparición de personaje en plataforma inicial
                 transform.position = RespawnPoint.position;
             }
             else
@@ -42,7 +48,7 @@ public class Player : MonoBehaviour
             
         }
     }
-
+    //Ataque de jugadores
     public void ActivateHitRoutine()
     {
         StartCoroutine(HitRoutine());
